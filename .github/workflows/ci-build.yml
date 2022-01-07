@@ -1,0 +1,24 @@
+# Configure integration.
+
+name: 👷 Build
+
+# Triggers the workflow on push or pull request events
+on: [push, pull_request]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: Linux
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out the repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+      # Install dependencies
+      - name: Install
+        run: yarn install
+      # Build the app
+      - name: Build
+        run: yarn build
