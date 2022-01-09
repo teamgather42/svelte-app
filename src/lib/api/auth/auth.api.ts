@@ -2,6 +2,7 @@ import { useFetch } from '../base.api';
 import { buildUrl } from '$lib/utils/url';
 import type { HttpMethod } from '../base.api';
 import type { QueryParams } from '$lib/utils/url';
+import { getApiUrl, getApiVersion } from '$lib/utils/env.variables';
 
 const useAuthAPI: (
 	method: HttpMethod,
@@ -17,11 +18,7 @@ const useAuthAPI: (
 		body: JSON.stringify(body)
 	};
 
-	const url = buildUrl(
-		`${import.meta.env.API_BASE_URL}/${import.meta.env.API_VERSION}`,
-		endpoint,
-		queryParams
-	);
+	const url = buildUrl(`${getApiUrl}/${getApiVersion}`, endpoint, queryParams);
 	const response = await useFetch(method, url, config);
 	return response.json();
 };
