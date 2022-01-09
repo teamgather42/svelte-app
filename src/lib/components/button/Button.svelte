@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/classnames';
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import type { Rounded, IconSize, Color } from '$lib/types/index';
+	import type { Rounded, IconSize, BackgroundColor, TextColor } from '$lib/types/index';
 	import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 	type Position = 'left' | 'right';
@@ -9,11 +9,11 @@
 	/**
 	 * Background color for the button.
 	 */
-	export let backgroundColor: Color = 'gray-600';
+	export let backgroundColor: BackgroundColor = 'bg-gray-600';
 	/**
 	 * Text color for the button.
 	 */
-	export let textColor: Color = 'white';
+	export let textColor: TextColor = 'text-white';
 	/**
 	 * Rounded corners for the button.
 	 */
@@ -33,8 +33,8 @@
 
 	$: componentClass = cn(
 		icon && 'flex items-center',
-		`bg-${backgroundColor}`,
-		`text-${textColor}`,
+		backgroundColor,
+		textColor,
 		rounded,
 		'font-semibold',
 		'text-base',
