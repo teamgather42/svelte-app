@@ -49,7 +49,7 @@
 	);
 </script>
 
-<button on:click class={componentClass}>
+<button data-testid="button_button" on:click class={componentClass}>
 	{#if icon && position === 'left'}
 		<Fa class="mr-2" {iconSize} {icon} />
 	{/if}
