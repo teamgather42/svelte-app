@@ -34,4 +34,6 @@
 	);
 </script>
 
-<i class={componentClass} />
+{#if icon}
+	<i data-testid="fa_icon" class={componentClass} />
+{/if}
