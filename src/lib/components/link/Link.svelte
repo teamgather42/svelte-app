@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/classnames';
-	import { getBaseUrl } from '$lib/utils/env.variables';
 
 	type DisplayAs = 'button' | 'link';
 	/**
 	 * Redirection URL.
 	 */
-	export let to: string = getBaseUrl as string;
+	export let to: string = '/';
 	/**
 	 * Display the link as a button or basic link.
 	 */
@@ -33,4 +32,4 @@
 	);
 </script>
 
-<a on:click class={componentClass} href={to}><slot /></a>
+<a data-testid="link" on:click class={componentClass} href={to}><slot /></a>
