@@ -1,7 +1,9 @@
 <script lang="ts">
-	import Header from '$lib/pages/layout/header/Header.svelte';
-
+	import { initI18n } from '$lib/i18n';
+	import { Header, Footer } from '$lib/pages/layout/index';
 	import '../base.css';
+
+	initI18n();
 </script>
 
 <svelte:head>
@@ -12,3 +14,5 @@
 <Header />
 
 <slot />
+
+<Footer />
