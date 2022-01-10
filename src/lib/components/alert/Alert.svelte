@@ -18,7 +18,11 @@
 </script>
 
 {#if !hide}
-	<section role="alert" class={`flex rounded-md w-fit py-2 px-4 ml-4 ${componentClass}`}>
+	<section
+		data-testid="alert_container"
+		role="alert"
+		class={`flex rounded-md w-fit py-2 px-4 ml-4 ${componentClass}`}
+	>
 		<p class="text-base font-light"><slot /></p>
 		<button on:click={hideAlert} role="button" class="ml-5"><i class="fas fa-times" /></button>
 	</section>
