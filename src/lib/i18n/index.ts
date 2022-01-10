@@ -11,6 +11,11 @@ const buybackLocales: Locales = {
 	'fr-FR': frFR
 };
 
+const localesToText = {
+	en: 'English',
+	'fr-FR': 'Francais'
+};
+
 let i18nLoaded = false;
 
 /**
@@ -28,4 +33,4 @@ const initI18n = () => {
 	}
 };
 
-export { t, initI18n, locale, locales };
+export { t, initI18n, locale, locales, localesToText };
