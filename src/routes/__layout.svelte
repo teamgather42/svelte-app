@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Header from '$lib/pages/layout/header/Header.svelte';
+
 	import '../base.css';
 </script>
 
@@ -6,5 +8,7 @@
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/fc13e8f391.js" crossorigin="anonymous"></script>
 </svelte:head>
+
+<Header />
 
 <slot />
