@@ -57,12 +57,23 @@
 
 <section class="flex flex-col w-fit">
 	{#if label}
-		<label class="text-sm font-bold" for={id}>{label}</label>
+		<label data-testid="text-input_label" class="text-sm font-bold" for={id}>{label}</label>
 	{/if}
-	<input bind:value on:input bind:this={element} {placeholder} {id} class={componentClass} />
+	<input
+		data-testid="text-input_input"
+		bind:value
+		on:input
+		bind:this={element}
+		{placeholder}
+		{id}
+		class={componentClass}
+	/>
 	{#if helperText}
-		<span class:text-red-500={error} class:text-green-500={valid} class="text-sm italic"
-			>{helperText}</span
+		<span
+			data-testid="text-input_helper-text"
+			class:text-red-500={error}
+			class:text-green-500={valid}
+			class="text-sm italic">{helperText}</span
 		>
 	{/if}
 </section>
