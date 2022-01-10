@@ -15,6 +15,7 @@
 
 {#if !hide}
 	<section
+		data-testid="info_container"
 		role="alert"
 		class="flex bg-teal-100 w-fit border-t-4 border-teal-500 shadow-md p-2 pr-4 max-w-xl"
 	>
@@ -23,10 +24,10 @@
 		</div>
 		<section class="text-teal-900">
 			{#if title}
-				<p class="text-base font-bold">{title}</p>
+				<p data-testid="info_title" class="text-base font-bold">{title}</p>
 			{/if}
 			{#if subtitle}
-				<p class="text-sm">
+				<p data-testid="info_subtitle" class="text-sm">
 					{subtitle}
 				</p>
 			{/if}
