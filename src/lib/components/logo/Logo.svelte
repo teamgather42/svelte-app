@@ -12,8 +12,10 @@
 
 <div>
 	{#if isLink}
-		<a href="/"><p class={className}>teamGather.</p></a>
+		<a data-testid="logo_link" href="/"
+			><p data-testid="logo_base" class={className}>teamGather.</p></a
+		>
 	{:else}
-		<p class={className}>teamGather.</p>
+		<p data-testid="logo_base" class={className}>teamGather.</p>
 	{/if}
 </div>
