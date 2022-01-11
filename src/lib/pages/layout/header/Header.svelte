@@ -1,9 +1,24 @@
-<script>
+<script lang="ts">
 	import Logo from '$lib/components/logo/Logo.svelte';
-	import LoginForm from '$lib/pages/forms/login/LoginForm.svelte';
-	import RegisterForm from '$lib/pages/forms/register/RegisterForm.svelte';
+	import Login from '$lib/pages/auth/login/Login.svelte';
+	import Register from '$lib/pages/auth/register/Register.svelte';
 	import MobileMenu from './mobile-menu/MobileMenu.svelte';
 	import { generalTab } from './nav.links';
+	import { debounce } from '$lib/utils/debounce';
+	import { authenticatedToken, setAuthenticatedToken } from '$lib/stores/';
+	import Button from '$lib/components/button/Button.svelte';
+
+	type Screen = 'login' | 'register';
+
+	let showRegisterFormEvent: boolean = null;
+	let showLoginFormEvent: boolean = null;
+
+	const debounceDisplay = debounce((screen: Screen) => modalDisplayHandler(screen));
+
+	const modalDisplayHandler = (screen?: Screen) =>
+		screen === 'login'
+			? (showLoginFormEvent = !showLoginFormEvent)
+			: (showRegisterFormEvent = !showRegisterFormEvent);
 </script>
 
 <header class="flex justify-between items-center py-3 px-6 shadow-sm">
@@ -18,8 +33,18 @@
 			{/each}
 		</ul>
 		<section class="flex">
-			<LoginForm />
-			<RegisterForm />
+			{#if !$authenticatedToken}
+				<Login
+					on:displayRegisterForm={() => debounceDisplay('register')}
+					showModal={!showLoginFormEvent}
+				/>
+				<Register
+					on:displayLoginForm={() => debounceDisplay('login')}
+					showModal={!showRegisterFormEvent}
+				/>
+			{:else}
+				<Button on:click={() => setAuthenticatedToken(null)}>Logout</Button>
+			{/if}
 		</section>
 	</nav>
 	<div class="block w-[2rem] md:hidden" />

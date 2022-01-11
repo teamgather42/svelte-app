@@ -2,8 +2,11 @@
 	import Fa from '$lib/components/fontawesome/Fa.svelte';
 	import Link from '$lib/components/link/Link.svelte';
 	import { LanguageSelector, CurrencySelector } from '$lib/components/selectors/index';
+	import Login from '$lib/pages/auth/login/Login.svelte';
+	import Register from '$lib/pages/auth/register/Register.svelte';
 	import MenuList from '../menu-list/MenuList.svelte';
 	import MenuToggler from '../menu-toggler/MenuToggler.svelte';
+	import { authenticatedToken } from '$lib/stores';
 	import { generalTab } from '../nav.links';
 
 	let showMenu: boolean = false;
@@ -23,17 +26,12 @@
 		>
 	</div>
 	<nav>
-		<section class="w-full flex items-center flex-col px-20">
-			<Link
-				class="mb-3 w-full text-center"
-				on:click={menuDisplayHandler}
-				to="/register"
-				displayAs="button">Join us</Link
-			>
-			<Link class="w-full text-center" on:click={menuDisplayHandler} to="/login" displayAs="button"
-				>Log in</Link
-			>
-		</section>
+		{#if !authenticatedToken}
+			<section class="w-full flex items-center flex-col px-20">
+				<Login />
+				<Register />
+			</section>
+		{/if}
 		<section class="px-4 mt-10">
 			<MenuList on:linkHandler={menuDisplayHandler} options={generalTab} heading="General" />
 		</section>
