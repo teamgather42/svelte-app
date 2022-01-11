@@ -35,11 +35,19 @@
 	 */
 	export let modalTitleClass: string = '';
 	/**
-	 * Determines if the modal is shown or not.
+	 * Send an event to close the modal.
 	 */
-	export let closeModal = false;
+	export let closeModal: boolean = null;
+	/**
+	 * Determines if the modal should be shown.
+	 */
+	export let showModal: boolean = null;
+	/**
+	 * Hide the modal.
+	 */
+	export let hidden: boolean = true;
 
-	let hidden = true;
+	$: hidden = showModal ? false : false;
 
 	$: hidden = closeModal ? true : true;
 
