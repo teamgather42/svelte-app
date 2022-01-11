@@ -36,8 +36,12 @@
 	 * Change the icon size.
 	 */
 	export let iconSize: IconSize = 'lg';
+	/**
+	 * Disbale the input if true.
+	 */
+	export let disabled: boolean = null;
 
-	let classList: string = '';
+	let classList = '';
 	export { classList as class };
 
 	$: componentClass = cn(
@@ -49,11 +53,12 @@
 		'font-semibold',
 		'text-base',
 		'py-2',
-		'px-4'
+		'px-4',
+		'disabled:bg-gray-400'
 	);
 </script>
 
-<button data-testid="button_button" on:click|preventDefault class={componentClass}>
+<button data-testid="button_button" on:click|preventDefault class={componentClass} {disabled}>
 	{#if icon && position === 'left'}
 		<Fa class="mr-2" {iconSize} {icon} />
 	{/if}
