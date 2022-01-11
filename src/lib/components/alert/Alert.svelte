@@ -10,6 +10,8 @@
 	 */
 	export let hide: boolean = true;
 
+	export let showButton: boolean = true;
+
 	$: componentClass =
 		(variant === 'danger' && 'bg-red-100 border border-red-500 text-red-500') ||
 		(variant === 'success' && 'bg-green-100 border border-green-500 text-green-500');
@@ -21,9 +23,11 @@
 	<section
 		data-testid="alert_container"
 		role="alert"
-		class={`flex rounded-md w-fit py-2 px-4 ml-4 ${componentClass}`}
+		class={`flex justify-between rounded-md w-full py-2 px-4 ${componentClass}`}
 	>
 		<p class="text-base font-light"><slot /></p>
-		<button on:click={hideAlert} role="button" class="ml-5"><i class="fas fa-times" /></button>
+		{#if showButton}
+			<button on:click={hideAlert} role="button"><i class="fas fa-times" /></button>
+		{/if}
 	</section>
 {/if}
