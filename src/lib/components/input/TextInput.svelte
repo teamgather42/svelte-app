@@ -37,6 +37,9 @@
 	 */
 	export let valid: boolean = false;
 
+	let classList: string = '';
+	export { classList as class };
+
 	let element;
 
 	onMount(() => (element.type = type));
@@ -45,6 +48,7 @@
 		!error && !valid && 'border-gray-300 focus:ring-blue-500',
 		error && 'border-red-500 focus:ring-red-500',
 		valid && 'border-green-500 focus:ring-green-500',
+		classList && classList,
 		'appearance-none',
 		'focus:ring-1',
 		'outline-none',
@@ -55,7 +59,7 @@
 	);
 </script>
 
-<section class="flex flex-col w-fit">
+<section class="flex flex-col">
 	{#if label}
 		<label data-testid="text-input_label" class="text-sm font-bold" for={id}>{label}</label>
 	{/if}
