@@ -1,3 +1,4 @@
+import { setLocalstorageItem, getLocalstorageItem } from '$lib/utils/localstorage';
 import { t, addMessages, getLocaleFromNavigator, init, locale, locales } from 'svelte-i18n';
 import en from './en.json';
 import frFR from './fr-FR.json';
@@ -25,12 +26,16 @@ const initI18n = () => {
 	if (!i18nLoaded) {
 		for (const [key, value] of Object.entries(buybackLocales)) addMessages(key, value);
 
+		let storedLocale = getLocalstorageItem('locale');
+
 		init({
 			fallbackLocale: 'en',
-			initialLocale: getLocaleFromNavigator()
+			initialLocale: storedLocale || getLocaleFromNavigator()
 		});
 		i18nLoaded = true;
 	}
+
+	locale.subscribe((value: Language) => setLocalstorageItem('locale', value));
 };
 
 export { t, initI18n, locale, locales, localesToText };
