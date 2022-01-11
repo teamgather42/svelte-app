@@ -1,11 +1,12 @@
 <script lang="ts">
 	import Fa from '$lib/components/fontawesome/Fa.svelte';
 	import Link from '$lib/components/link/Link.svelte';
+	import { LanguageSelector, CurrencySelector } from '$lib/components/selectors/index';
 	import MenuList from '../menu-list/MenuList.svelte';
 	import MenuToggler from '../menu-toggler/MenuToggler.svelte';
 	import { generalTab } from '../nav.links';
 
-	let showMenu: boolean = true;
+	let showMenu: boolean = false;
 
 	const menuDisplayHandler = () => (showMenu = !showMenu);
 </script>
@@ -34,7 +35,14 @@
 			>
 		</section>
 		<section class="px-4 mt-10">
-			<MenuList options={generalTab} heading="General" />
+			<MenuList on:linkHandler={menuDisplayHandler} options={generalTab} heading="General" />
+		</section>
+		<section class="px-4">
+			<h2 class="border-b text-xl mb-2">Options</h2>
+			<ul>
+				<li class="mb-2"><LanguageSelector /></li>
+				<li><CurrencySelector /></li>
+			</ul>
 		</section>
 	</nav>
 </aside>
