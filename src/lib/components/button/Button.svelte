@@ -37,8 +37,12 @@
 	 */
 	export let iconSize: IconSize = 'lg';
 
+	let classList: string = '';
+	export { classList as class };
+
 	$: componentClass = cn(
 		icon && 'flex items-center',
+		classList && classList,
 		backgroundColor,
 		textColor,
 		rounded,
@@ -49,7 +53,7 @@
 	);
 </script>
 
-<button data-testid="button_button" on:click class={componentClass}>
+<button data-testid="button_button" on:click|preventDefault class={componentClass}>
 	{#if icon && position === 'left'}
 		<Fa class="mr-2" {iconSize} {icon} />
 	{/if}
