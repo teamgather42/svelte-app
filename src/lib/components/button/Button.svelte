@@ -9,6 +9,7 @@
 		IconPrefix,
 		IconName
 	} from '$lib/types/index';
+	import Loader from '../loader/Loader.svelte';
 
 	type Position = 'left' | 'right';
 
@@ -40,6 +41,10 @@
 	 * Disbale the input if true.
 	 */
 	export let disabled: boolean = null;
+	/**
+	 * Show a spinner.
+	 */
+	export let loading: boolean = false;
 
 	let classList = '';
 	export { classList as class };
@@ -54,11 +59,17 @@
 		'text-base',
 		'py-2',
 		'px-4',
-		'disabled:bg-gray-400'
+		'disabled:bg-gray-400',
+		'flex',
+		'justify-center',
+		'items-center'
 	);
 </script>
 
 <button data-testid="button_button" on:click|preventDefault class={componentClass} {disabled}>
+	{#if loading}
+		<Loader />
+	{/if}
 	{#if icon && position === 'left'}
 		<Fa class="mr-2" {iconSize} {icon} />
 	{/if}
