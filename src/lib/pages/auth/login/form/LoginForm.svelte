@@ -27,8 +27,18 @@
 	 * Display alert when shown.
 	 */
 	let hideAlert: boolean = false;
+	/**
+	 * Add a loading spinner waiting for the request to return the data.
+	 */
+	let loading: boolean = false;
+
+	/**
+	 * If all the fields are not empty enable the button.
+	 */
+	$: disabled = !!!(identifier && password);
 
 	const formSubmitHandler = async () => {
+		loading = true;
 		const isEmail = checkEmail(identifier);
 		let requestBody: Login;
 		// Check if the identifier is an email to pass the good body value.
@@ -41,6 +51,7 @@
 			// Todo set a timeout with success message.
 			dispatch('authSuccess');
 		}
+		loading = false;
 	};
 </script>
 
@@ -51,8 +62,12 @@
 		<Alert hide={hideAlert}>{apiError}</Alert>
 	{/if}
 	<section class="flex justify-center">
-		<Button on:click={formSubmitHandler} class="mt-4 w-full" backgroundColor="bg-blue-500"
-			>Sign In</Button
+		<Button
+			{disabled}
+			{loading}
+			on:click={formSubmitHandler}
+			class="mt-4 w-full"
+			backgroundColor="bg-blue-500">Sign In</Button
 		>
 	</section>
 </form>

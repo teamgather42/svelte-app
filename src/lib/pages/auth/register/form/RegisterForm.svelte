@@ -35,6 +35,10 @@
 	 * Display the alert.
 	 */
 	let hideAlert: boolean = false;
+	/**
+	 * Add a loading spinner waiting for the request to return the data.
+	 */
+	let loading: boolean = false;
 
 	/**
 	 * If all the fields are not empty enable the button.
@@ -46,6 +50,7 @@
 	$: body = { email, username, firstname, lastname, password };
 
 	const formSubmitHandler = async () => {
+		loading = true;
 		const { error, user } = await useRegister(body);
 		if (error) {
 			hideAlert = false;
@@ -53,6 +58,7 @@
 		} else if (user) {
 			dispatch('authSuccess');
 		}
+		loading = false;
 	};
 </script>
 
@@ -67,6 +73,7 @@
 	{/if}
 	<section class="flex justify-center">
 		<Button
+			{loading}
 			{disabled}
 			on:click={formSubmitHandler}
 			class="mt-4 w-full"
