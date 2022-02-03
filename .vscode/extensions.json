@@ -2,7 +2,7 @@
 	"recommendations": [
 		"svelte.svelte-vscode",
 		"esbenp.prettier-vscode",
-		"vtrois.gitmoji-vscode",
+		"seatonjiang.gitmoji-vscode",
 		"lokalise.i18n-ally"
 	]
 }
