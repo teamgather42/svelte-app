@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { scale } from 'svelte/transition';
+
 	/**
 	 * Title of the modal.
 	 */
@@ -10,6 +12,8 @@
 </script>
 
 <div
+	in:scale={{ duration: 100, start: 0.95 }}
+	out:scale={{ duration: 75, start: 0.95 }}
 	class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
 >
 	<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
