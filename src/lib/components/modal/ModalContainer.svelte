@@ -10,7 +10,7 @@
 	/**
 	 * Determines if it should be displayed or not.
 	 */
-	export let hidden: boolean = false;
+	export let hidden: boolean;
 	/**
 	 * Title of the modal.
 	 */

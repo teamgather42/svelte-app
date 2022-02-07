@@ -17,7 +17,7 @@
 	 * When user click on {Join Us} close this modal then open the register modal.
 	 */
 	const displayRegisterForm = () => {
-		closeModal = !closeModal;
+		setTimeout(() => (closeModal = !closeModal), 0);
 		dispatch('displayRegisterForm');
 	};
 </script>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { scale } from 'svelte/transition';
-
 	/**
 	 * Title of the modal.
 	 */

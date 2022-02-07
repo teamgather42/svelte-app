@@ -37,7 +37,7 @@
 	/**
 	 * Send an event to close the modal.
 	 */
-	export let closeModal: boolean = null;
+	export let closeModal: boolean = false;
 	/**
 	 * Determines if the modal should be shown.
 	 */
@@ -47,9 +47,8 @@
 	 */
 	export let hidden: boolean = true;
 
-	$: hidden = showModal ? false : false;
-
-	$: hidden = closeModal ? true : true;
+	$: if (!showModal || showModal) hidden = false;
+	$: if (!closeModal || closeModal) hidden = true;
 
 	const modalHandler = (event: CustomEvent) => {
 		const value = event.detail.hide as boolean;
