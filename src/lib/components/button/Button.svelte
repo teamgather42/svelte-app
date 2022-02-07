@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/classnames';
-	import Fa from '$lib/components/fontawesome/Fa.svelte';
+	import { Fa, Loader } from '$lib/components';
 	import type {
 		Rounded,
 		IconSize,
@@ -9,7 +9,6 @@
 		IconPrefix,
 		IconName
 	} from '$lib/types/index';
-	import Loader from '../loader/Loader.svelte';
 
 	type Position = 'left' | 'right';
 

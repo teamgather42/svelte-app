@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Fa from '$lib/components/fontawesome/Fa.svelte';
+	import { Fa } from '$lib/components/';
 </script>
 
 <section class="block md:hidden">

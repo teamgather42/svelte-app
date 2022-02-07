@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import Modal from '$lib/components/modal/Modal.svelte';
-	import Link from '$lib/components/link/Link.svelte';
-	import RegisterForm from './form/RegisterForm.svelte';
+	import { Modal, Link } from '$lib/components';
+	import { RegisterForm } from './';
 
 	const dispatch = createEventDispatcher();
 	/**

@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Logo from '$lib/components/logo/Logo.svelte';
-	import Fa from '$lib/components/fontawesome/Fa.svelte';
-	import { LanguageSelector, CurrencySelector } from '$lib/components/selectors/';
+	import { LanguageSelector, CurrencySelector, Fa, Logo } from '$lib/components/';
 </script>
 
 <footer class="border-t-2 border-grey-500">

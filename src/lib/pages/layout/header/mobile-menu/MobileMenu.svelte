@@ -1,11 +1,7 @@
 <script lang="ts">
-	import Fa from '$lib/components/fontawesome/Fa.svelte';
-	import Link from '$lib/components/link/Link.svelte';
-	import { LanguageSelector, CurrencySelector } from '$lib/components/selectors/index';
-	import Login from '$lib/pages/auth/login/Login.svelte';
-	import Register from '$lib/pages/auth/register/Register.svelte';
-	import MenuList from '../menu-list/MenuList.svelte';
-	import MenuToggler from '../menu-toggler/MenuToggler.svelte';
+	import { Fa, LanguageSelector, CurrencySelector } from '$lib/components';
+	import { Login, Register } from '$lib/pages/auth';
+	import { MenuList, MenuToggler } from '../';
 	import { authenticatedToken } from '$lib/stores';
 	import { generalTab } from '../nav.links';
 

@@ -1,12 +1,10 @@
 <script lang="ts">
-	import Logo from '$lib/components/logo/Logo.svelte';
-	import Login from '$lib/pages/auth/login/Login.svelte';
-	import Register from '$lib/pages/auth/register/Register.svelte';
-	import MobileMenu from './mobile-menu/MobileMenu.svelte';
+	import { Button, Logo } from '$lib/components';
+	import { Login, Register } from '$lib/pages/auth';
+	import { MobileMenu } from './mobile-menu/';
 	import { generalTab } from './nav.links';
 	import { debounce } from '$lib/utils/debounce';
 	import { authenticatedToken, setAuthenticatedToken } from '$lib/stores/';
-	import Button from '$lib/components/button/Button.svelte';
 
 	type Screen = 'login' | 'register';
 

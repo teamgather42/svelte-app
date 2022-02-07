@@ -1,14 +1,12 @@
 <script lang="ts">
-	import TextInput from '$lib/components/input/TextInput.svelte';
+	import { TextInput, Button, Alert } from '$lib/components';
 	import { createEventDispatcher } from 'svelte';
-	import Button from '$lib/components/button/Button.svelte';
 	import { authAPI } from '$lib/api/auth';
 	import { checkEmail } from '$lib/pages/auth/validator';
 	import type { Login } from '$lib/api/auth';
 	import { setAuthenticatedToken } from '$lib/stores';
-	import Alert from '$lib/components/alert/Alert.svelte';
-	const { useLogin } = authAPI;
 
+	const { useLogin } = authAPI;
 	const dispatch = createEventDispatcher();
 
 	/**
