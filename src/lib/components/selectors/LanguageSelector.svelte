@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { locales, locale, localesToText } from '$lib/i18n';
-	import { Modal } from '$lib/components/modal';
-	import Fa from '../fontawesome/Fa.svelte';
+	import { Modal, Fa } from '$lib/components/';
 
 	let closeModal: boolean = false;
 
@@ -9,7 +8,7 @@
 
 	const changeLocale = (value) => {
 		locale.set(value);
-		closeModal = !closeModal;
+		setTimeout(() => (closeModal = !closeModal), 0);
 	};
 </script>
 
@@ -29,7 +28,7 @@
 						{localesToText[item]}
 					</button>
 				{:else}
-					<button class="w-full text-left py-2 pl-8" on:click={() => changeLocale(item)}>
+					<button class="w-full text-left py-2 pl-9" on:click={() => changeLocale(item)}>
 						{localesToText[item]}
 					</button>
 				{/if}

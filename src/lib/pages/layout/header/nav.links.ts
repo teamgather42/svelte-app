@@ -5,7 +5,7 @@ export type Option = {
 
 export const generalTab: Option[] = [
 	{ href: '/', label: 'Home' },
-	{ href: '/', label: 'Jobs' },
-	{ href: '/', label: 'Teams' },
-	{ href: '/', label: 'Projects' }
+	{ href: '/teams', label: 'Teams' },
+	{ href: '/projects', label: 'Projects' },
+	{ href: '/contact', label: 'Contact' }
 ];
