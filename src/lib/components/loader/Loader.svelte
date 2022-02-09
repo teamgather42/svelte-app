@@ -1,5 +1,22 @@
+<script lang="ts">
+	import type { TextColor } from '$lib/types';
+
+	/**
+	 * The color of the spinner.
+	 */
+	export let color: TextColor = 'text-white';
+	/**
+	 * Size of the spinner specify width and height.
+	 */
+	export let size: string = 'h-5 w-5';
+	/**
+	 * Allow to add a space.
+	 */
+	export let space: boolean = false;
+</script>
+
 <svg
-	class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+	class="animate-spin -ml-1 {size} {color} {space && 'mr-3'}"
 	xmlns="http://www.w3.org/2000/svg"
 	fill="none"
 	viewBox="0 0 24 24"
