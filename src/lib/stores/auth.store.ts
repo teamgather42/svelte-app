@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 import type { AuthenticatedToken } from '$lib/types/';
 import { browser } from '$app/env';
 import { setLocalstorageItem, removeLocalstorageItem } from '$lib/utils/localstorage';
@@ -7,10 +7,20 @@ import { setLocalstorageItem, removeLocalstorageItem } from '$lib/utils/localsto
  * Rertrieve the user token from the local storage.
  */
 const token: AuthenticatedToken = browser && localStorage.getItem('token');
+
 /**
  * Store that contain the user token if the user is logged in.
  */
 const authenticatedToken = writable<AuthenticatedToken>(token);
+
+/**
+ * The user decoded token.
+ */
+const decodedToken = derived(
+	authenticatedToken,
+	(token) => browser && token && JSON.parse(atob(token.split('.')[1]))
+);
+
 /**
  * Allow to set the user's token.
  * @param token The token.
@@ -23,9 +33,9 @@ const removeAuthenticatedToken = () => authenticatedToken.set(null);
 /**
  * Update the local storage each time the token is update.
  */
-authenticatedToken.subscribe((value) => {
+authenticatedToken.subscribe(async (value) => {
 	if (value) setLocalstorageItem('token', value);
 	else if (value === null) removeLocalstorageItem('token');
 });
 
-export { authenticatedToken, setAuthenticatedToken, removeAuthenticatedToken };
+export { authenticatedToken, setAuthenticatedToken, removeAuthenticatedToken, decodedToken };
