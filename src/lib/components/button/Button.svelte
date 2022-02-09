@@ -67,7 +67,7 @@
 
 <button data-testid="button_button" on:click|preventDefault class={componentClass} {disabled}>
 	{#if loading}
-		<Loader />
+		<Loader space />
 	{/if}
 	{#if icon && position === 'left'}
 		<Fa class="mr-2" {iconSize} {icon} />
