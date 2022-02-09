@@ -3,6 +3,8 @@ import type { HttpMethod } from './';
 import { buildUrl } from '$lib/utils/url';
 import type { QueryParams } from '$lib/utils/url';
 import { getApiUrl, getApiVersion } from '$lib/utils/env.variables';
+import { get } from 'svelte/store';
+import { authenticatedToken } from '$lib/stores';
 
 /**
  * Allow to get the api base url.
@@ -19,6 +21,7 @@ const getTeamgatherHeaders: (customHeaders: Object) => Headers = (customHeaders)
 	const headers = new Headers();
 	if (customHeaders)
 		Object.entries(customHeaders).map(([value, key]) => headers.append(value, key));
+	if (get(authenticatedToken)) headers.append('Authorization', `Bearer ${get(authenticatedToken)}`);
 	return headers;
 };
 
@@ -37,7 +40,7 @@ const useTeamgatherAPI: (
 	queryParams: QueryParams,
 	body?: Object,
 	customHeaders?: Object
-) => Promise<any> = async (method, endpoint, queryParams, body = {}, customHeaders = null) => {
+) => Promise<any> = async (method, endpoint, queryParams, body = null, customHeaders = null) => {
 	const headers = getTeamgatherHeaders(customHeaders);
 	const config: Partial<RequestInit> = { headers, credentials: 'same-origin', mode: 'cors' };
 	if (body) config.body = JSON.stringify(body);
