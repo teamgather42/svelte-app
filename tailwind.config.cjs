@@ -7,7 +7,8 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			archivo: ['"Archivo Black", sans-serif'],
-			roboto: ["'Roboto', sans-serif;"]
+			roboto: ["'Roboto', sans-serif"],
+			roboto_c: ["'Roboto Condensed', sans-serif"]
 		},
 		variants: {
 			extend: {}
