@@ -3,9 +3,7 @@
 	import { scale } from 'svelte/transition';
 	import { removeAuthenticatedToken } from '$lib/stores';
 	import { Fa } from '$lib/components/';
-	import { createEventDispatcher } from 'svelte';
 
-	const dispatch = createEventDispatcher();
 	let show: boolean = false; // menu state
 	let menu = null; // menu wrapper DOM reference
 
@@ -39,11 +37,6 @@
 		show = !show;
 		removeAuthenticatedToken();
 	};
-
-	const profileDisplayHandler = () => {
-		show = !show;
-		dispatch('displayProfileModal');
-	};
 </script>
 
 <div class="relative" bind:this={menu}>
@@ -64,10 +57,10 @@
 			out:scale={{ duration: 75, start: 0.95 }}
 			class="origin-top-right absolute right-0 w-48 py-2 mt-1 bg-white rounded shadow-xl"
 		>
-			<button
-				on:click={profileDisplayHandler}
-				class="block px-4 py-2 w-full text-left hover:bg-blue-700 hover:text-green-100"
-				>Profile</button
+			<a
+				on:click={dropdownDisplayHandler}
+				href="/account"
+				class="block px-4 py-2 w-full text-left hover:bg-blue-700 hover:text-green-100">Account</a
 			>
 			<button
 				on:click={logoutHandler}
