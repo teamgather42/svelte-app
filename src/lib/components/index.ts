@@ -8,3 +8,4 @@ export * from './loader';
 export * from './logo';
 export * from './modal';
 export * from './selectors';
+export * from './card';
