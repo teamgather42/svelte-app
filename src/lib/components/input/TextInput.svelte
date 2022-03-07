@@ -45,7 +45,9 @@
 	onMount(() => (element.type = type));
 
 	$: componentClass = cn(
-		!error && !valid && 'border-gray-300 focus:ring-blue-500',
+		!error &&
+			!valid &&
+			'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none',
 		error && 'border-red-500 focus:ring-red-500',
 		valid && 'border-green-500 focus:ring-green-500',
 		classList && classList,
@@ -59,11 +61,14 @@
 	);
 </script>
 
-<section class="flex flex-col">
+<section class="flex flex-col w-full min-w-0">
 	{#if label}
-		<label data-testid="text-input_label" class="text-sm font-bold" for={id}>{label}</label>
+		<label data-testid="text-input_label" class="text-sm" for={id}>{label}</label>
 	{/if}
 	<input
+		on:keydown
+		on:blur
+		on:focus
 		data-testid="text-input_input"
 		bind:value
 		on:input
