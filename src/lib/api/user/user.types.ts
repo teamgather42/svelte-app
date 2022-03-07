@@ -11,6 +11,16 @@ export interface UserAPI {
 	 * @returns The updated datas.
 	 */
 	updateUser: (fields: object) => Promise<UserResponse>;
+	/**
+	 * Allow to retrieve authenitcated user's information.
+	 * @returns The authenitcated user's datas.
+	 */
+	getMyAccount: () => Promise<UserResponse>;
+	/**
+	 * Allow to disable an account.
+	 * @returns The user with disabled field set.
+	 */
+	disableAccount: () => Promise<UserResponse>;
 }
 
 export type UserModel = {
@@ -25,7 +35,11 @@ export type UserModel = {
 	deletedAt?: any;
 };
 
+export type UserData = {
+	user: UserModel;
+};
+
 export type UserResponse = {
 	error: any[];
-	user: UserModel | null;
+	data: UserData | null;
 };

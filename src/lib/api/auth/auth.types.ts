@@ -5,7 +5,11 @@ export type Login = {
 };
 
 export type LoginResponse = {
-	error: string;
+	error: string[];
+	data: LoginData;
+};
+
+export type LoginData = {
 	token: string;
 };
 
