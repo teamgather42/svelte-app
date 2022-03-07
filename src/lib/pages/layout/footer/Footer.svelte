@@ -14,7 +14,7 @@
 			<li><a href="/">Sitemap</a></li>
 		</ul>
 	</nav>
-	<div class="flex flex-col w-full md:flex-row md:justify-between items-center md:pb-5">
+	<div class="flex flex-col w-full md:flex-row md:justify-between items-center md:pb-5 mt-8">
 		<section class="flex justify-around w-300">
 			<CurrencySelector />
 			<LanguageSelector />
@@ -50,14 +50,6 @@
 </footer>
 
 <style>
-	nav > ul::after {
-		content: '';
-		width: 100%;
-		height: 2px;
-		background-color: rgb(229 231 235 / var(--tw-border-opacity));
-		margin: 20px 0;
-	}
-
 	.w-300 {
 		max-width: 300px;
 		width: 100%;
