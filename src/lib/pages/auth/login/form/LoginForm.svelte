@@ -42,10 +42,10 @@
 		// Check if the identifier is an email to pass the good body value.
 		if (isEmail) requestBody = { email: identifier, password };
 		else requestBody = { username: identifier, password };
-		const response = await useLogin(requestBody);
-		if (response.error) apiError = response.error;
-		else if (response.token) {
-			setAuthenticatedToken(response.token);
+		const { data, error } = await useLogin(requestBody);
+		if (error.length > 0) apiError = error[0];
+		else if (data.token) {
+			setAuthenticatedToken(data.token);
 			// Todo set a timeout with success message.
 			dispatch('authSuccess');
 		}
