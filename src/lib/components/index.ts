@@ -9,3 +9,4 @@ export * from './logo';
 export * from './modal';
 export * from './selectors';
 export * from './card';
+export * from './router';
