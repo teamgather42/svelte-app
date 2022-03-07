@@ -1,3 +1,24 @@
 {
-    "title": "Hello world" 
+	"home": {
+		"search": {
+			"title": { "message": "Find the perfect services for your business" },
+			"select": {
+				"teams": {
+					"title": "Teams"
+				},
+				"projects": {
+					"title": "Projects"
+				},
+				"users": {
+					"title": "Users"
+				}
+			}
+		},
+		"services": {
+			"title": { "title": "Our services in 3 steps" },
+			"card1": { "title": "Find the project / team that you need" },
+			"card3": { "title": "Begin the project with your dreamteam" },
+			"card2": { "title": "Rate the people you worked with" }
+		}
+	}
 }

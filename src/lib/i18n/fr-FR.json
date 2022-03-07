@@ -1,3 +1,24 @@
 {
-    "title": "Bonjour le monde" 
+	"home": {
+		"search": {
+			"title": { "message": "Trouvez les services parfait pour votre entreprise" },
+			"select": {
+				"teams": {
+					"title": "Equipes"
+				},
+				"projects": {
+					"title": "Projets"
+				},
+				"users": {
+					"title": "Utilisateurs"
+				}
+			}
+		},
+		"services": {
+			"title": { "title": "Nos services en 3 étapes" },
+			"card1": { "title": "Trouvez l'équipe / projet que vous avez besoin" },
+			"card3": { "title": "Commencez le projet avec l'équipe de vos rêves" },
+			"card2": { "title": "Notez les personnes avec qui vous avez travaillé" }
+		}
+	}
 }
