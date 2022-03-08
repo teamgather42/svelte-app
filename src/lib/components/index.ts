@@ -10,3 +10,4 @@ export * from './modal';
 export * from './selectors';
 export * from './card';
 export * from './router';
+export * from './filter';
