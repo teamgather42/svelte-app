@@ -10,7 +10,7 @@
 		IconName
 	} from '$lib/types/index';
 
-	type Position = 'left' | 'right';
+	type Position = 'left' | 'right' | 'center';
 
 	/**
 	 * Background color for the button.
@@ -36,6 +36,10 @@
 	 * Change the icon size.
 	 */
 	export let iconSize: IconSize = 'lg';
+	/**
+	 * Change the icon color.
+	 */
+	export let iconColor: TextColor = 'text-black';
 	/**
 	 * Disbale the input if true.
 	 */
@@ -70,10 +74,14 @@
 		<Loader space />
 	{/if}
 	{#if icon && position === 'left'}
-		<Fa class="mr-2" {iconSize} {icon} />
+		<Fa {iconColor} class="mr-2" {iconSize} {icon} />
 	{/if}
-	<slot />
+	{#if position === 'center'}
+		<Fa {iconColor} {iconSize} {icon} />
+	{:else}
+		<slot />
+	{/if}
 	{#if icon && position === 'right'}
-		<Fa class="ml-2" {iconSize} {icon} />
+		<Fa {iconColor} class="ml-2" {iconSize} {icon} />
 	{/if}
 </button>
