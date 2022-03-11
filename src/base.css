@@ -22,6 +22,10 @@
 	font-family: 'Roboto', sans-serif;
 }
 
+body {
+	width: 100%;
+}
+
 /* clears the ‘X’ from Internet Explorer */
 input[type='search']::-ms-clear {
 	display: none;

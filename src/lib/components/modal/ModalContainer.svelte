@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { ModalContent } from './index';
 	import { createEventDispatcher } from 'svelte';
+	import { browser } from '$app/env';
 
 	const dispatch = createEventDispatcher();
 	/**
@@ -25,7 +26,12 @@
 	/**
 	 * Focus the container for accessibility.
 	 */
-	$: if (!hidden) container?.focus();
+	$: if (!hidden) {
+		container?.focus();
+		browser && document?.body.classList.add('fixed');
+	}
+
+	$: if (hidden) browser && document?.body.classList.remove('fixed');
 
 	const closeModalHandler = (event: MouseEvent): void =>
 		dispatch('modalHandler', { hide: element === event.target });
