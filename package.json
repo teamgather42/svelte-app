@@ -36,7 +36,7 @@
 		"svelte-check": "^2.2.6",
 		"svelte-i18n": "^3.3.13",
 		"svelte-jester": "^2.1.5",
-		"svelte-preprocess": "^4.9.4",
+		"svelte-preprocess": "^4.10.5",
 		"tailwindcss": "^3.0.11",
 		"ts-jest": "^27.1.2",
 		"ts-node-dev": "^1.1.8",
