@@ -16,6 +16,7 @@
 	let fields = ['username', 'firstname', 'lastname'];
 	let updateError: string = '';
 	let success: boolean = null;
+	let picture;
 
 	let showModal: boolean = false;
 
@@ -28,6 +29,7 @@
 			username = user.username;
 			firstname = user.firstname;
 			lastname = user.lastname;
+			picture = user.picture.uri;
 		}
 		isLoading = false;
 	});
@@ -61,6 +63,9 @@
 </script>
 
 <section class="flex flex-col items-center md:block">
+	{#if picture}
+		<img src={picture} alt="" class="rounded-full border-green-400 w-44 h-44" />
+	{/if}
 	<h1 class=" text-4xl">Account settings</h1>
 	{#if !isLoading}
 		<form class="w-full mt-5">

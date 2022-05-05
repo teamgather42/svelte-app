@@ -40,6 +40,8 @@
 	 */
 	let loading: boolean = false;
 
+	let role: 'worker' | 'recriuter' = undefined;
+
 	/**
 	 * If all the fields are not empty enable the button.
 	 */
@@ -47,12 +49,12 @@
 	/**
 	 * Create a body from form data.
 	 */
-	$: body = { email, username, firstname, lastname, password };
+	$: body = { email, username, firstname, lastname, password, role };
 
 	const formSubmitHandler = async () => {
 		loading = true;
 		const { error, user } = await useRegister(body);
-		if (error) {
+		if (error?.length > 0) {
 			hideAlert = false;
 			apiError = error;
 		} else if (user) {
@@ -68,6 +70,22 @@
 	<TextInput bind:value={firstname} type="text" placeholder="Firstname" class="w-full mt-4" />
 	<TextInput bind:value={lastname} type="text" placeholder="Lastname" class="w-full mt-4" />
 	<TextInput bind:value={password} type="password" placeholder="Password" class="w-full my-4" />
+	<label for="worker"> Worker </label>
+	<input
+		on:change={(e) => (role = e.target.id)}
+		id="worker"
+		type="radio"
+		name="role"
+		value="worker"
+	/>
+	<label for="recruiter"> Recruiter </label>
+	<input
+		on:change={(e) => (role = e.target.id)}
+		id="recruiter"
+		type="radio"
+		name="role"
+		value="recruiter"
+	/>
 	{#if apiError}
 		<Alert hide={hideAlert}>{apiError}</Alert>
 	{/if}

@@ -27,7 +27,7 @@
 	>
 		<p class="text-base font-light"><slot /></p>
 		{#if showButton}
-			<button on:click={hideAlert} role="button"><i class="fas fa-times" /></button>
+			<button on:click={hideAlert}><i class="fas fa-times" /></button>
 		{/if}
 	</section>
 {/if}

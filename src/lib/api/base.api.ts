@@ -1,3 +1,5 @@
+import { setAuthenticatedToken } from '$lib/stores';
+
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 /**
@@ -17,6 +19,10 @@ const useFetch: (
 	const initConfig = { ...config, method };
 
 	response = await fetch(url, initConfig);
+	if (response?.status === 401) {
+		setAuthenticatedToken(null);
+		window.location = '/';
+	}
 	return response;
 };
 

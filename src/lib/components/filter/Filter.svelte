@@ -10,6 +10,9 @@
 	let selectedOption = null;
 	let inputFocused: boolean;
 
+	let className: string = '';
+	export { className as class };
+
 	export let options;
 
 	$: if (options.length > 0) selectedOption = options[0];
@@ -43,12 +46,14 @@
 	<button
 		on:click={selectDisplayHandler}
 		type="button"
-		class="relative w-full flex items-center h-full focus:z-20 bg-white border border-gray-300 rounded-md rounded-l-none shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+		class="relative w-full flex items-center h-full focus:z-20 bg-white border border-gray-300 rounded-md rounded-l-none shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm {className}"
 		aria-haspopup="listbox"
 		aria-expanded="true"
 		aria-labelledby="listbox-label"
 	>
-		<Fa class="flex items-center" icon={selectedOption.icon} iconSize="sm" />
+		{#if selectedOption?.icon}
+			<Fa class="flex items-center" icon={selectedOption.icon} iconSize="sm" />
+		{/if}
 		<span class="flex items-center">
 			<span class="ml-3 block truncate">{$t(selectedOption.label)}</span>
 		</span>
