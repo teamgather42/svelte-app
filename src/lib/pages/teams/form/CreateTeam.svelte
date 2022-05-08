@@ -23,7 +23,10 @@
 			redirect: 'follow'
 		};
 
-		await fetch('http://teamgather-api.heifarabuval.fr/api/v1/team', requestOptions)
+		await fetch(
+			`${import.meta.env.API_BASE_URL}/${import.meta.env.API_VERSION}/team`,
+			requestOptions
+		)
 			.then((response) => response.text())
 			.then((result) => console.log(result))
 			.catch((error) => console.log('error', error));

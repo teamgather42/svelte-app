@@ -19,10 +19,10 @@ const useFetch: (
 	const initConfig = { ...config, method };
 
 	response = await fetch(url, initConfig);
-	if (response?.status === 401) {
-		setAuthenticatedToken(null);
-		window.location = '/';
-	}
+	// if (response?.status === 401) {
+	// 	setAuthenticatedToken(null);
+	// 	window.location = '/';
+	// }
 	return response;
 };
 

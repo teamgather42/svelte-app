@@ -9,6 +9,9 @@ export const teamAPI: TeamAPI = {
 	useGetAll: () => useTeamgatherAPI('GET', 'team/get-all', { limit: '100' }),
 	useGetOneByName: (teamName: string) =>
 		useTeamgatherAPI('GET', `team/get-by-name/${teamName}`, { p: 'true' }),
-	useGetMemberTeam: () => useTeamgatherAPI('GET', '/team/get-teams-where-im-member', { p: 'true' }),
-	useGetAdminteam: () => useTeamgatherAPI('GET', '/team/get-teams-where-im-admin', { p: 'true' })
+	useGetMemberTeam: () => useTeamgatherAPI('GET', 'team/get-teams-where-im-member', { p: 'true' }),
+	useGetAdminteam: () => useTeamgatherAPI('GET', 'team/get-teams-where-im-admin', { p: 'true' }),
+	useInviteLink: (body) => useTeamgatherAPI('POST', 'team/create-invitation-link', {}, body),
+	useJoinTeam: (body, token) =>
+		useTeamgatherAPI('POST', 'team/join', {}, body, { Authorization: `Bearer ${token}` })
 };

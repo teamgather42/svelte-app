@@ -32,8 +32,6 @@
 			loadDatas();
 		}, 0);
 	};
-
-	$: console.log($decodedToken);
 </script>
 
 <section class="px-16 mt-12">

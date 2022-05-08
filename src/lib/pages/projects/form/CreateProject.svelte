@@ -23,8 +23,6 @@
 		useCreate(body);
 		dispatch('projectCreated');
 	};
-
-	$: console.log(selected);
 </script>
 
 <form>

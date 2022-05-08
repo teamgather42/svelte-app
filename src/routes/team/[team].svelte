@@ -1,13 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { teamAPI } from '$lib/api';
-	import { Loader } from '$lib/components';
+	import { teamAPI, userAPI } from '$lib/api';
+	import { Alert, Button, Loader } from '$lib/components';
 	const { useGetOneByName } = teamAPI;
 	import type { Team } from '$lib/api';
+	import { decodedToken } from '$lib/stores';
+	import TextInput from '$lib/components/input/TextInput.svelte';
+	const { getOneByUsername } = userAPI;
+	const { useInviteLink } = teamAPI;
 
 	let teamName: string, createdDate;
 	let team: Team = [];
+	let isUserAdmin;
+	let inviteUsername: string = '';
+	let error: string;
+	let success: string;
+
 	onMount(() => {
 		teamName = $page.params.team;
 		loadDatas();
@@ -21,7 +30,27 @@
 	};
 
 	$: if (team?.createdAt) createdDate = new Date(team.createdAt).toLocaleDateString('fr');
+
 	$: console.log(team);
+
+	$: $decodedToken !== null &&
+		team?.admin?.find(({ email }) => {
+			isUserAdmin = email === $decodedToken.email;
+		});
+
+	const inviteUserHandler = async () => {
+		if (inviteUsername === $decodedToken.username) return (error = "You can't invite yourself");
+		let response = await getOneByUsername(inviteUsername);
+		if (response?.error?.length > 0) error = 'No user for ' + inviteUsername;
+		else {
+			const { error: err } = await useInviteLink({
+				teamId: team.id,
+				userId: response.data.user.id
+			});
+			if (err.length === 0) success = 'Invite sent';
+			else error = err[0];
+		}
+	};
 </script>
 
 {#if team?.length === 0}
@@ -89,12 +118,25 @@
 					</div>
 					<div class="grid grid-cols-3">
 						{#each team?.members as member}
-							<a href={'/user/' + member.username} class="text-main-color">
-								<div class="text-center my-2">
-									<img class="h-16 w-16 rounded-full mx-auto" src={member.picture.uri} alt="" />
-									<p class="text-main-color">{member.username}</p>
-								</div>
-							</a>
+							{#if isUserAdmin && member.email !== $decodedToken?.email}
+								<a href={'/user/' + member.username} class="text-main-color relative">
+									<div class="text-center my-2">
+										<button
+											class="absolute top-0 right-0 bg-red-500 rounded-full w-5 h-5 flex justify-center items-center text-white"
+											>X</button
+										>
+										<img class="h-16 w-16 rounded-full mx-auto" src={member.picture.uri} alt="" />
+										<p class="text-main-color">{member.username}</p>
+									</div>
+								</a>
+							{:else}
+								<a href={'/user/' + member.username} class="text-main-color">
+									<div class="text-center my-2">
+										<img class="h-16 w-16 rounded-full mx-auto" src={member.picture.uri} alt="" />
+										<p class="text-main-color">{member.username}</p>
+									</div>
+								</a>
+							{/if}
 						{/each}
 					</div>
 				</div>
@@ -142,6 +184,36 @@
 							</ul>
 						</div>
 					</div>
+					{#if isUserAdmin}
+						<div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+							<span class="text-green-500">
+								<svg
+									class="h-5"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+									/>
+								</svg>
+							</span>
+							<span class="tracking-wide">Invite a member</span>
+						</div>
+						<div class="flex">
+							<TextInput placeholder="User's Username" bind:value={inviteUsername} />
+							<Button on:click={inviteUserHandler}>Invite</Button>
+						</div>
+						{#if error}
+							<Alert hide={false} variant="danger">{error}</Alert>
+						{:else if success}
+							<Alert variant="success" hide={false}>{success}</Alert>
+						{/if}
+					{/if}
 					<!-- End of Experience and education grid -->
 				</div>
 				<!-- End of profile tab -->

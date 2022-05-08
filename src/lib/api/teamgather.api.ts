@@ -19,9 +19,10 @@ const getTeamgatherBaseUrl: () => string = () => `${getApiUrl}/${getApiVersion}`
  */
 const getTeamgatherHeaders: (customHeaders: Object) => Headers = (customHeaders) => {
 	const headers = new Headers();
+	if (get(authenticatedToken) && !customHeaders?.Authorization)
+		headers.append('Authorization', `Bearer ${get(authenticatedToken)}`);
 	if (customHeaders)
 		Object.entries(customHeaders).map(([value, key]) => headers.append(value, key));
-	if (get(authenticatedToken)) headers.append('Authorization', `Bearer ${get(authenticatedToken)}`);
 	return headers;
 };
 

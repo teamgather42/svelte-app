@@ -2,7 +2,7 @@ export interface Team {
 	id: string;
 	teamName: string;
 	creator: string;
-	admin: string[];
+	admin: string[] | Admin[];
 	members: string[];
 	createdAt: Date;
 	updatedAt?: any;
@@ -98,4 +98,6 @@ export interface TeamAPI {
 	useGetOneByName: (teamName: any) => Promise<any>;
 	useGetMemberTeam: () => Promise<any>;
 	useGetAdminteam: () => Promise<any>;
+	useInviteLink: (body) => Promise<any>;
+	useJoinTeam: (body, token) => Promise<any>;
 }

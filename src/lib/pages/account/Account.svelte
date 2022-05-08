@@ -5,7 +5,7 @@
 	import { authenticatedToken } from '$lib/stores';
 	import { Route } from '$lib/components';
 	import { browser } from '$app/env';
-	import { Settings, Projects, Teams } from '$lib/pages/account/containers';
+	import { Settings, Projects, Teams, Notification } from '$lib/pages/account/containers';
 
 	const checkIsLoggedIn = () => {
 		if (!authGuard()) browser && goto('/');
@@ -17,7 +17,7 @@
 		if (!authGuard()) browser && goto('/');
 	});
 
-	type RoutePath = 'edit_profile' | 'teams' | 'projects';
+	type RoutePath = 'edit_profile' | 'teams' | 'projects' | 'notification';
 
 	let currentRoute: RoutePath = 'edit_profile';
 </script>
@@ -53,6 +53,14 @@
 						Projects
 					</button>
 				</li>
+				<li class="w-full">
+					<button
+						on:click={() => (currentRoute = 'notification')}
+						class="hover:bg-gray-100 rounded-full py-2 px-4 text-gray-600 hover:text-black w-full justify-center flex items-center"
+					>
+						Notifications
+					</button>
+				</li>
 			</ul>
 		</div>
 	</aside>
@@ -60,5 +68,6 @@
 		<Route {currentRoute} route={'edit_profile'} component={Settings} />
 		<Route {currentRoute} route={'teams'} component={Teams} />
 		<Route {currentRoute} route={'projects'} component={Projects} />
+		<Route {currentRoute} route={'notification'} component={Notification} />
 	</section>
 </section>

@@ -39,7 +39,6 @@
 
 	const searchHandler = () => {
 		if (searchValue.length > 2) {
-			console.log('ok');
 		}
 	};
 
