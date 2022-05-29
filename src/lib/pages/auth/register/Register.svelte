@@ -11,13 +11,12 @@
 	/**
 	 * Hide the modal.
 	 */
-	let closeModal: boolean = null;
+	export let closeModal: boolean = null;
 
 	/**
 	 * When user click on {Sign In} close this modal then open the login modal.
 	 */
 	const displayLoginForm = () => {
-		closeModal = !closeModal;
 		dispatch('displayLoginForm');
 	};
 </script>

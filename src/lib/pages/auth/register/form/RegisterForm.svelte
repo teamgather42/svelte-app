@@ -65,11 +65,35 @@
 </script>
 
 <form class="mt-10">
-	<TextInput bind:value={email} type="text" placeholder="Email" class="w-full mt-4" />
-	<TextInput bind:value={username} type="text" placeholder="Username" class="w-full mt-4" />
-	<TextInput bind:value={firstname} type="text" placeholder="Firstname" class="w-full mt-4" />
-	<TextInput bind:value={lastname} type="text" placeholder="Lastname" class="w-full mt-4" />
-	<TextInput bind:value={password} type="password" placeholder="Password" class="w-full my-4" />
+	<TextInput label="Email" bind:value={email} type="text" placeholder="Email" class="w-full" />
+	<TextInput
+		label="Username"
+		bind:value={username}
+		type="text"
+		placeholder="Username"
+		class="w-full"
+	/>
+	<TextInput
+		label="Firstname"
+		bind:value={firstname}
+		type="text"
+		placeholder="Firstname"
+		class="w-full"
+	/>
+	<TextInput
+		label="Lastname"
+		bind:value={lastname}
+		type="text"
+		placeholder="Lastname"
+		class="w-full"
+	/>
+	<TextInput
+		label="Password"
+		bind:value={password}
+		type="password"
+		placeholder="Password"
+		class="w-full"
+	/>
 	<label for="worker"> Worker </label>
 	<input
 		on:change={(e) => (role = e.target.id)}

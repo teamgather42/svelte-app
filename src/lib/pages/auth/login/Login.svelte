@@ -11,14 +11,16 @@
 	/**
 	 * Hide the modal.
 	 */
-	let closeModal: boolean = null;
+	export let closeModal: boolean = null;
 
 	/**
 	 * When user click on {Join Us} close this modal then open the register modal.
 	 */
 	const displayRegisterForm = () => {
-		setTimeout(() => (closeModal = !closeModal), 0);
-		dispatch('displayRegisterForm');
+		setTimeout(() => {
+			closeModal = !closeModal;
+			dispatch('displayRegisterForm');
+		}, 0);
 	};
 </script>
 

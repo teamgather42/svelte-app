@@ -34,7 +34,7 @@
 	};
 </script>
 
-<section class="px-16 mt-12">
+<section class="container mx-auto mt-12">
 	<h1 class=" text-3xl">Teams</h1>
 	<p>List of teams on teamGather</p>
 	<div class="w-full flex justify-end">

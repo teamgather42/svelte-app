@@ -61,7 +61,7 @@
 	);
 </script>
 
-<section class="flex flex-col w-full min-w-0">
+<section class="flex flex-col w-full min-w-0 my-2">
 	{#if label}
 		<label data-testid="text-input_label" class="text-sm" for={id}>{label}</label>
 	{/if}

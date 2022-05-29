@@ -12,16 +12,20 @@
 
 	let showRegisterFormEvent: boolean = null;
 	let showLoginFormEvent: boolean = null;
+	let hideRegisterFormEvent: boolean = null;
+	let hideLoginFormEvent: boolean = null;
 	let showMobileMenu: boolean = true;
 
 	const debounceDisplay = debounce((screen: Screen) => modalDisplayHandler(screen));
 
 	const modalDisplayHandler = (screen?: Screen) => {
-		setTimeout(() => {
-			screen === 'login'
-				? (showLoginFormEvent = !showLoginFormEvent)
-				: (showRegisterFormEvent = !showRegisterFormEvent);
-		}, 0);
+		if (screen === 'login') {
+			hideRegisterFormEvent = !hideLoginFormEvent;
+			showLoginFormEvent = !showLoginFormEvent;
+		} else if (screen === 'register') {
+			hideLoginFormEvent = !hideLoginFormEvent;
+			showRegisterFormEvent = !showRegisterFormEvent;
+		}
 	};
 
 	const showMobileMenuHandler = () => {
@@ -38,10 +42,12 @@
 			{:else}
 				<Login
 					on:displayRegisterForm={() => debounceDisplay('register')}
+					closeModal={hideLoginFormEvent}
 					showModal={!showLoginFormEvent}
 				/>
 				<Register
 					on:displayLoginForm={() => debounceDisplay('login')}
+					closeModal={hideRegisterFormEvent}
 					showModal={!showRegisterFormEvent}
 				/>
 			{/if}
