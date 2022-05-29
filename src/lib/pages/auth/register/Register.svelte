@@ -17,7 +17,10 @@
 	 * When user click on {Sign In} close this modal then open the login modal.
 	 */
 	const displayLoginForm = () => {
-		dispatch('displayLoginForm');
+		setTimeout(() => {
+			closeModal = !closeModal;
+			dispatch('displayLoginForm');
+		}, 0);
 	};
 </script>
 

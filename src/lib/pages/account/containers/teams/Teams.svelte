@@ -12,12 +12,14 @@
 		});
 		await useGetMemberTeam().then(({ data: { teams } }) => {
 			memberTeam = teams.filter((value) => {
-				adminTeam.forEach((value2) => {
-					if (value.id === value2.id) {
-						return false;
-					}
-					return true;
-				});
+				if (adminTeam?.length > 0) {
+					adminTeam.forEach((value2) => {
+						if (value.id === value2.id) {
+							return false;
+						}
+						return true;
+					});
+				} else return true;
 			});
 		});
 	});
@@ -25,6 +27,9 @@
 
 <section>
 	<h1 class="text-4xl">Teams</h1>
+	{#if !adminTeam?.length && !memberTeam?.length}
+		<p>You have no team</p>
+	{/if}
 	{#if adminTeam && adminTeam.length > 0}
 		<h2 class="mt-4">Mes équipes en tant que admin</h2>
 		<ul class="flex flex-col p-4">

@@ -62,6 +62,8 @@
 			{#each teams as { teamName, picture: { uri } }}
 				<TeamCard title={teamName} href={`/team/${teamName}`} src={uri} />
 			{/each}
+		{:else}
+			<p>No teams</p>
 		{/if}
 	</section>
 </section>
