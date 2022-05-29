@@ -37,11 +37,11 @@
 
 	const formSubmitHandler = async () => {
 		loading = true;
+		apiError = '';
 		const isEmail = checkEmail(identifier);
-		let requestBody: Login;
+		let requestBody: Login = { password };
 		// Check if the identifier is an email to pass the good body value.
-		if (isEmail) requestBody = { email: identifier, password };
-		else requestBody = { username: identifier, password };
+		isEmail ? (requestBody.email = identifier) : (requestBody.username = identifier);
 		const { data, error } = await useLogin(requestBody);
 		if (error.length > 0) apiError = error[0];
 		else if (data.token) {
@@ -51,6 +51,8 @@
 		}
 		loading = false;
 	};
+
+	$: if (identifier || password) apiError = '';
 </script>
 
 <form class="mt-10">
